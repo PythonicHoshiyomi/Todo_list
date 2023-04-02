@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<!--index.html-->
+{% if object_list %}
+<h3>All my lists: </h3>
+{% endif %}
+<ul>
+    {% for todolist in object_list %}
+    <li>
+        <div
+            role="button"
+            onclick="location.href='{% url "list" todolist.pk %}'">
+            {{ todolist.title }}
+        </div>
+    </li>
+    {% empty %}
+    <h4>You have no lists!</h4>
+    {% endfor %}
+</ul>
+<p>
+    <input type="button" value="Add a new list" onclick="location.href='{% url "list-add" %}'">
+</p>
+{% endblock %}
